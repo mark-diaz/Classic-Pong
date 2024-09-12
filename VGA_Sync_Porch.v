@@ -33,8 +33,8 @@ module VGA_Sync_Porch #(parameter VIDEO_WIDTH = 3,
     reg [VIDEO_WIDTH-1:0] grn_video_r = 0;
     reg [VIDEO_WIDTH-1:0] blu_video_r = 0;
 
-    Sync_Count #(.TOTAL_COLS(TOTAL_COLS),
-                  .TOTAL_ROWS(TOTAL_ROWS)) UUT 
+    VGA_Sync_Count #(.TOTAL_COLS(TOTAL_COLS),
+                  .TOTAL_ROWS(TOTAL_ROWS)) VGA_Sync_Count_Inst 
     (
         .clk_i(clk_i),
         .Hsync_i(Hsync_i),

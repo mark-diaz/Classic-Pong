@@ -9,7 +9,7 @@ The design consists of 9 Verilog modules:
 - `UART_RX.v`: UART receiver to start the game.
 - `VGA_Sync_Pulse.v`: Generates sync pulses (Hsync and Vsync) for the active and inactive areas of the display.
 - `Debounced_Switch.v`: A module to debounce the switches used for gameplay (four total).
-- `Sync_Count.v`: Identifies the index of the current pixel the display is currently on.
+- `VGA_Sync_Count.v`: Identifies the index of the current pixel the display is currently on.
 - `Paddle_Ctl.v`: Handles player paddle controls.
 - `Ball_Ctl.v`: Manages the ball control in the Pong game.
 - `VGA_Sync_Porch.v`: Modifies the sync pulses to account for the front and back porch used to center the VGA display.

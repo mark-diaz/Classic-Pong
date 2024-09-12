@@ -1,5 +1,5 @@
 
-module Sync_Count 
+module VGA_Sync_Count 
     #(parameter TOTAL_COLS = 800,
     parameter TOTAL_ROWS = 525)
 (
