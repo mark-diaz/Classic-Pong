@@ -6,9 +6,11 @@ module Debounced_Switch #(parameter DEBOUNCE_LIMIT = 250000) (
 );
   
     reg state_r = 1'b0;
+    output sw_o );
+
+    reg state_r = 1'b0;
     reg [$clog2(DEBOUNCE_LIMIT)-1:0] count_r;
 
-  
     always @(posedge clk_i)
     begin
         if (sw_i != state_r && count_r < DEBOUNCE_LIMIT)
@@ -18,10 +20,20 @@ module Debounced_Switch #(parameter DEBOUNCE_LIMIT = 250000) (
                 count_r <= 0;
                 state_r <= sw_i;
             end
+            count_r <= count_r + 1; // counter
+        else if (count_r == DEBOUNCE_LIMIT)
+        begin
+            count_r <= 0;
+            state_r <= sw_i;
+        end
         else 
             count_r <= 0;
    	end
   	
+    assign sw_o = state_r;
+            count_r <= 0;
+    end
+
     assign sw_o = state_r;
 
 endmodule

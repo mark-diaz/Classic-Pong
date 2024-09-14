@@ -1,0 +1,23 @@
+# Lattice ICE 40 Pinout
+
+# Push-button switch:
+set_io sw_i 53
+
+# Clock
+set_io clk_i 15
+
+# 7 Segment Display
+set_io seg_A_o 100
+set_io seg_B_o 99
+set_io seg_C_o 97
+set_io seg_D_o 95
+set_io seg_E_o 94
+set_io seg_F_o 8
+set_io seg_G_o 96
+
+# Unused LEDs
+set_io led_1 56
+set_io led_2 57
+set_io led_3 59
+set_io led_4 60
+
