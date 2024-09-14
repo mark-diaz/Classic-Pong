@@ -1,12 +1,13 @@
+// This is the highest level module that instatiates: UART_RX, VGA_Sync_Pulse, Debounced_Switch, Pong_Top, VGA_Sync_Porch
+
 module Classic_Pong_Top (
-    
-    // switches
+    // Switches: Player Control
     input sw1_i,
     input sw2_i,
     input sw3_i,
     input sw4_i,
 
-    // VGA
+    // VGA: Display
     output VGA_Hsync_o,
     output VGA_Vsync_o,
     output VGA_Red_0_o,
@@ -18,14 +19,13 @@ module Classic_Pong_Top (
     output VGA_Blu_0_o,
     output VGA_Blu_1_o,
     output VGA_Blu_2_o
-
 );
 
-    // 25 000 000 / 115 200 = 217
+    // 25 000 000 Mhz / 115 200 baud rate = 217 clock cycles per bit
     parameter CLKS_PER_BIT = 217;
 
     // VGA Constants
-    parameter VIDEO_WIDTH = 3;
+    parameter VIDEO_WIDTH = 3; // Three signals for R, G and B
     parameter TOTAL_COLS = 800;
     parameter TOTAL_ROWS = 525;
     parameter ACTIVE_COLS = 640;
@@ -36,9 +36,10 @@ module Classic_Pong_Top (
     wire [VIDEO_WIDTH-1:0] Grn_Video_Pong_w, Grn_Video_Porch_w;
     wire [VIDEO_WIDTH-1:0] Blu_Video_Pong_w, Blu_Video_Porch_w;
 
-    // Receiver to start game
+    // Data Valid Pulse starts game
     wire rx_dv_w;
 
+    // Instatiate UART Receiver to start game
     UART_RX #(.CLKS_PER_BIT(CLKS_PER_BIT)) UART_RX_Inst
     (
         .clk_i(clk_i),
@@ -48,15 +49,14 @@ module Classic_Pong_Top (
     );
 
     // Generate Hsync and Vsync to run VGA
-
     wire Hsync_w, Vsync_w;
 
-    VGA_Sync_Pulse #( .TOTAL_COLS(TOTAL_COLS),
-                      .TOTAL_ROWS(TOTAL_ROWS),
-                      .ACTIVE_COLS(ACTIVE_COLS),
-                      .ACTIVE_ROWS(ACTIVE_ROWS) ) 
-    VGA_Sync_Inst 
-    (
+    VGA_Sync_Pulse #( 
+        .TOTAL_COLS(TOTAL_COLS),
+        .TOTAL_ROWS(TOTAL_ROWS),
+        .ACTIVE_COLS(ACTIVE_COLS),
+        .ACTIVE_ROWS(ACTIVE_ROWS) 
+    ) VGA_Sync_Inst (
         .clk_i(clk_i),
         .Hsync_o(Hsync_w),
         .Vsync_o(Vsync_w),
@@ -67,29 +67,25 @@ module Classic_Pong_Top (
     // Debounce Switches
     wire sw1_w, sw2_w, sw3_w, sw4_w;
 
-    Debounced_Switch sw_1
-    (
+    Debounced_Switch sw_1 (
         .clk_i(clk_i),
         .sw_i(sw1_i),
         .sw_o(sw1_w)
     );
 
-    Debounced_Switch sw_2
-    (
+    Debounced_Switch sw_2 (
         .clk_i(clk_i),
         .sw_i(sw2_i),
         .sw_o(sw2_w)
     );
 
-    Debounced_Switch sw_3
-    (
+    Debounced_Switch sw_3 (
         .clk_i(clk_i),
         .sw_i(sw3_i),
         .sw_o(sw3_w)
     );
 
-    Debounced_Switch sw_4
-    (
+    Debounced_Switch sw_4 (
         .clk_i(clk_i),
         .sw_i(sw4_i),
         .sw_o(sw4_w)
@@ -98,10 +94,11 @@ module Classic_Pong_Top (
     // Pong Top: Handles game logic
     wire Hsync_Pong_w, Vsync_Pong_w;
 
-    Pong_Top #( .TOTAL_COLS(TOTAL_COLS),
-                      .TOTAL_ROWS(TOTAL_ROWS),
-                      .ACTIVE_COLS(ACTIVE_COLS),
-                      .ACTIVE_ROWS(ACTIVE_ROWS) ) 
+    Pong_Top #( 
+        .TOTAL_COLS(TOTAL_COLS),
+        .TOTAL_ROWS(TOTAL_ROWS),
+        .ACTIVE_COLS(ACTIVE_COLS),
+        .ACTIVE_ROWS(ACTIVE_ROWS) ) 
     Pong_Top_Inst (
         .clk_i(clk_i),
         .Hsync_i(Hsync_w),

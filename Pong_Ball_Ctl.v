@@ -1,7 +1,8 @@
-module Pong_Ball_Ctl 
-    #(parameter GAME_WIDTH = 40,
-    parameter GAME_HEIGHT = 30 )
-(
+module Pong_Ball_Ctl #(
+    parameter GAME_WIDTH = 40,
+    parameter GAME_HEIGHT = 30 
+) (
+
     input clk_i,
     input Game_Active_i,
     
@@ -13,7 +14,8 @@ module Pong_Ball_Ctl
 
     // Current position of ball
     output reg [5:0] Ball_X_o = 0,
-    output reg [5:0] Ball_Y_o = 0 );
+    output reg [5:0] Ball_Y_o = 0 
+);
     
     // same speed as paddle
     parameter BALL_SPEED = 1250000;

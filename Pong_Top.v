@@ -1,9 +1,9 @@
-module Pong_Top 
-    #(parameter TOTAL_COLS = 800, 
+module Pong_Top #(
+    parameter TOTAL_COLS = 800, 
     parameter TOTAL_ROWS = 525, 
     parameter ACTIVE_COLS = 640, 
-    parameter ACTIVE_ROWS = 480)
-(
+    parameter ACTIVE_ROWS = 480
+) (
     input clk_i,
     input Hsync_i,
     input Vsync_i,
@@ -84,42 +84,44 @@ module Pong_Top
     assign row_count_div_w = row_count_w[9:4];
 
     // Player 1 Paddle
-    Pong_Paddle_Ctl 
-    #(.PLAYER_PADDLE_X(PADDLE_COL_P1),
-    .GAME_HEIGHT(GAME_HEIGHT)) P1_Inst
-    (
+    Pong_Paddle_Ctl #(
+        .PLAYER_PADDLE_X(PADDLE_COL_P1),
+        .GAME_HEIGHT(GAME_HEIGHT)
+    ) P1_Inst (
         .clk_i(clk_i),
         .col_count_div_i(col_count_div_w),
         .row_count_div_i(row_count_div_w),
         .Paddle_Up_i(Paddle_Up_P1_i),
         .Paddle_Down_i(Paddle_Down_P1_i),
         .Draw_Paddle_o(Draw_Paddle_P1_w),
-        .Paddle_Y_o(Paddle_Y_P1_w) );
+        .Paddle_Y_o(Paddle_Y_P1_w) 
+    );
 
     // Player 2 Paddle
-    Pong_Paddle_Ctl 
-    #(.PLAYER_PADDLE_X(PADDLE_COL_P2),
-    .GAME_HEIGHT(GAME_HEIGHT)) P2_Inst
-    (
+    Pong_Paddle_Ctl #(
+        .PLAYER_PADDLE_X(PADDLE_COL_P2),
+        .GAME_HEIGHT(GAME_HEIGHT)
+        ) P2_Inst (
         .clk_i(clk_i),
         .col_count_div_i(col_count_div_w),
         .row_count_div_i(row_count_div_w),
         .Paddle_Up_i(Paddle_Up_P2_i),
         .Paddle_Down_i(Paddle_Down_P2_i),
         .Draw_Paddle_o(Draw_Paddle_P2_w),
-        .Paddle_Y_o(Paddle_Y_P2_w) );
+        .Paddle_Y_o(Paddle_Y_P2_w) 
+    );
 
     // Ball 
     wire Game_Active_w;
-    Pong_Ball_Ctl Ball_Inst
-    (
+    Pong_Ball_Ctl Ball_Inst (
         .clk_i(clk_i),
         .Game_Active_i(Game_Active_w),
         .col_count_div_i(col_count_div_w),
         .row_count_div_i(row_count_div_w),
         .Draw_Ball_o(Draw_Ball_w),
         .Ball_X_o(Ball_X_w),
-        .Ball_Y_o(Ball_Y_w) );
+        .Ball_Y_o(Ball_Y_w) 
+    );
 
     always @(posedge clk_i) 
     begin

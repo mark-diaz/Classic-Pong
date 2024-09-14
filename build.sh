@@ -4,6 +4,7 @@ set -e # exit on failure
 
 CLEAN=false;
 
+# Incorrect Use Output
 if [[ $# -eq 0 ]]; then
     echo "Usage $0 [--clean] file_1.v [file_2.v ... file_n.v]"
     exit 1

@@ -1,8 +1,8 @@
 
-module VGA_Sync_Count 
-    #(parameter TOTAL_COLS = 800,
-    parameter TOTAL_ROWS = 525)
-(
+module VGA_Sync_Count #(
+    parameter TOTAL_COLS = 800,
+    parameter TOTAL_ROWS = 525
+) (
     input clk_i,
     input Hsync_i,
     input Vsync_i,

@@ -1,9 +1,9 @@
-module VGA_Sync_Pulse 
-    #(parameter TOTAL_COLS = 800, 
+module VGA_Sync_Pulse #(
+    parameter TOTAL_COLS = 800, 
     parameter TOTAL_ROWS = 525, 
     parameter ACTIVE_COLS = 640, 
-    parameter ACTIVE_ROWS = 480)
-(
+    parameter ACTIVE_ROWS = 480
+) (
     input clk_i,
     output Hsync_o,
     output Vsync_o,

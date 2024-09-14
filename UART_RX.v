@@ -2,8 +2,7 @@
 
 // CLOCK CYCLES PER BIT = FREQUENCY / BAUD RATE
 // 25000000 / 115200 = 217
-module UART_RX #(parameter CLKS_PER_BIT = 217)
-(
+module UART_RX #(parameter CLKS_PER_BIT = 217) (
     input clk_i,
     input rx_serial_i,
     output rx_dv_o,

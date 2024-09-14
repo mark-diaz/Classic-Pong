@@ -1,9 +1,10 @@
-module VGA_Sync_Porch #(parameter VIDEO_WIDTH = 3,
-                        parameter TOTAL_COLS = 3,
-                        parameter TOTAL_ROWS = 3,
-                        parameter ACTIVE_COLS = 2,
-                        parameter ACTIVE_ROWS = 2)
-(
+module VGA_Sync_Porch #(
+    parameter VIDEO_WIDTH = 3,
+    parameter TOTAL_COLS = 3,
+    parameter TOTAL_ROWS = 3,
+    parameter ACTIVE_COLS = 2,
+    parameter ACTIVE_ROWS = 2
+) (
     input clk_i,
     input Hsync_i,
     input Vsync_i,

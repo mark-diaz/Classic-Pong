@@ -1,8 +1,8 @@
-module Pong_Paddle_Ctl 
-    #(parameter PLAYER_PADDLE_X = 0,
+module Pong_Paddle_Ctl #(
+    parameter PLAYER_PADDLE_X = 0,
     parameter PADDLE_HEIGHT = 6,
-    parameter GAME_HEIGHT = 30 )
-    (
+    parameter GAME_HEIGHT = 30 
+) (
         input clk_i,
         
         // Current gameboard unit being drawn 
@@ -13,7 +13,8 @@ module Pong_Paddle_Ctl
         output reg Draw_Paddle_o,
 
         // current paddle position (Y)
-        output reg [5:0] Paddle_Y_o );
+        output reg [5:0] Paddle_Y_o 
+);
    
     // Higher PADDLE_SPEED -> Slower Movement
     parameter PADDLE_SPEED = 1250000; // Once per 1 250 000 clock cycles
