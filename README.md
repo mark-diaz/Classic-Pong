@@ -10,8 +10,8 @@ The design consists of 9 Verilog modules:
 **Gameplay**:
 - `Classic_Pong_Top.v`: The highest-level module containing the entire project (Gameplay, Utility, and VGA)
   - `Pong_Top.v`: This top-level module contains the gameplay logic (Paddle and Ball control)
-    - `Paddle_Ctl.v`: Handles player paddle controls (receives switch signals)
-    - `Ball_Ctl.v`: Manages the ball control in the Pong game 
+    - `Pong_Paddle_Ctl.v`: Handles player paddle controls (receives switch signals)
+    - `Pong_Ball_Ctl.v`: Manages the ball control in the Pong game 
 
 **Utility**:
   - `UART_RX.v`: UART receiver to start the game (data valid pulse is used to start game)

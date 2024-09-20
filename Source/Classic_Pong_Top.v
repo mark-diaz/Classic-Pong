@@ -1,6 +1,9 @@
 // This is the highest level module that instatiates: UART_RX, VGA_Sync_Pulse, Debounced_Switch, Pong_Top, VGA_Sync_Porch
 
 module Classic_Pong_Top (
+    
+    input clk_i,
+    input UART_RX_i,
     // Switches: Player Control
     input sw1_i,
     input sw2_i,
