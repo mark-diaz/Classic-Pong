@@ -3,7 +3,7 @@
 module Classic_Pong_Top (
     
     input clk_i,
-    input UART_RX_i,
+    input rst_i,
     // Switches: Player Control
     input sw1_i,
     input sw2_i,
@@ -42,11 +42,11 @@ module Classic_Pong_Top (
     // Data Valid Pulse starts game
     wire rx_dv_w;
 
-    // Instatiate UART Receiver to start game
+    // Instatiate UART Receiver to start game - rst signal
     UART_RX #(.CLKS_PER_BIT(CLKS_PER_BIT)) UART_RX_Inst
     (
         .clk_i(clk_i),
-        .rx_serial_i(UART_RX_i),
+        .rx_serial_i(rst_i),
         .rx_dv_o(rx_dv_w),
         .rx_byte_o()
     );
